@@ -5,6 +5,8 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
 
 plugins:
   - serverless-offline
@@ -12,5 +14,10 @@ plugins:
 
 
 functions:
-  hello:
-    handler: handler.hello
+  productApi:
+    handler: Controller/products.handler
+    events:
+      - http:
+          path: /index
+          method: get
+      
